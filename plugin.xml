@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.phonegap.plugins.mapkit"
+    version="0.0.1">
+
+    <name>MapKit</name>
+
+    <asset src="www/MapKit.js" target="MapKit.js" />
+    <asset src="www/map-close-button.png" target="map-close-button.png" />
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <permission
+                android:name="$PACKAGE_NAME.permission.MAPS_RECEIVE"
+                android:protectionLevel="signature" />
+            <uses-permission android:name="$PACKAGE_NAME.permission.MAPS_RECEIVE" />
+            <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+            <uses-feature
+                android:glEsVersion="0x00020000"
+                android:required="true" />
+            
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data
+                android:name="com.google.android.maps.v2.API_KEY"
+                android:value="$API_KEY" />
+        </config-file>
+
+        <config-file target="res/xml/config.xml" parent="/widget/plugins">
+            <plugin name="MapKit"
+                value="com.phonegap.plugins.mapkit.MapKit"/>
+        </config-file>
+
+        <source-file src="src/android/MapKit.java"
+                target-dir="src/com/phonegap/plugins/mapkit" />
+        <preference name="API_KEY" />
+    </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/widget/plugins">
+            <plugin name="MapKitView"
+                value="MapKitView"/>
+        </config-file>
+
+        <framework src="MapKit.framework" />
+        <resource-file src="icon.png" />
+
+        <header-file src="AsyncImageView.h" />
+        <header-file src="CDVAnnotation.h" />
+        <header-file src="MapKit.h" />
+
+        <source-file src="AsyncImageView.m" />
+        <source-file src="CDVAnnotation.m" />
+        <source-file src="MapKit.m" />
+    </platform>
+</plugin>
