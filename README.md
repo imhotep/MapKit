@@ -5,6 +5,10 @@ Uses *Apple Maps* on iOS and *Google Maps v2* on Android
 
 Currently only works/tested on Android. iOS is currently outdated and DOES NOT WORK.
 
+![Cordova Map 1](http://i.imgur.com/Mf6oeXa.png)
+
+![Cordova Map 2](http://i.imgur.com/XaaBGeG.png)
+
 
 Android specific
 ----------------
