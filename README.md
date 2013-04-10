@@ -5,7 +5,16 @@ Uses *Apple Maps* on iOS and *Google Maps v2* on Android
 
 Currently only works/tested on Android. iOS is currently outdated and DOES NOT WORK.
 
+
+Android specific
+----------------
+
+You need a [Google Maps Android v2 API KEY](https://code.google.com/apis/console/) from google and you need to specify it when you install the plugin
+
 You can install this plugin with [plugman](https://npmjs.org/package/plugman)
+
+    plugman --platform android --project android-mapkit-example/ --plugin MapKit --variable API_KEY="YOUR_API_KEY_FROM_GOOGLE"
+
 
 Sample code
 -----------
