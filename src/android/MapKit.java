@@ -169,6 +169,35 @@ public class MapKit extends CordovaPlugin {
 		}
 	}
 
+	public void changeMapType(final JSONObject options) {
+        try{
+            cordova.getActivity().runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    if( mapView != null ) {
+                        int mapType = 0;
+                        try {
+                            mapType = options.getInt("mapType");
+                        } catch (JSONException e) {
+                            LOG.e(TAG, "Error reading options");
+                        }
+
+                        //Don't want to set the map type if it's the same
+                        if(mapView.getMap().getMapType() != mapType) {
+                            mapView.getMap().setMapType(mapType);
+                        }
+                    }
+
+                    cCtx.success();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            cCtx.error("MapKitPlugin::changeMapType(): An exception occured ");
+        }
+    }
+
 	public boolean execute(String action, JSONArray args,
 			CallbackContext callbackContext) throws JSONException {
 		cCtx = callbackContext;
@@ -180,6 +209,8 @@ public class MapKit extends CordovaPlugin {
 			addMapPins(args.getJSONArray(0));
 		} else if (action.compareTo("clearMapPins") == 0) {
 			clearMapPins();
+		} else if( action.compareTo("changeMapType") == 0 ) {
+			changeMapType(args.getJSONObject(0));
 		}
 		LOG.d(TAG, action);
 
