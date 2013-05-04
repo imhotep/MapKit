@@ -126,16 +126,24 @@ public class MapKit extends CordovaPlugin {
 					if (mapView != null) {
 						try {
 							for (int i = 0, j = pins.length(); i < j; i++) {
-								JSONArray coordinates = pins.getJSONArray(i);
-								double latitude = coordinates.getDouble(0);
-								double longitude = coordinates.getDouble(1);
-
-								// adding Marker
-								// TODO add ability to set info bubble with title()
-								mapView.getMap().addMarker(
-										new MarkerOptions()
-												.position(new LatLng(latitude,
-														longitude)));
+								double latitude = 0, longitude = 0;
+                                String title = null, snippet = null;
+                                JSONObject options = pins.getJSONObject(i);
+                                latitude = options.getDouble("lat");
+                                longitude = options.getDouble("lon");
+                                if(options.has("title")) {
+                                    title = options.getString("title");
+                                }
+                                if( options.has("snippet") ) {
+                                    snippet = options.getString("snippet");
+                                }
+                                // adding Marker
+                                mapView.getMap().addMarker(
+                                        new MarkerOptions()
+                                                .title(title)
+                                                .snippet(snippet) //If there is no title,  the snippet isn't displayed
+                                                .position(new LatLng(latitude,
+                                                        longitude)));
 							}
 							cCtx.success();
 						} catch (JSONException e) {
