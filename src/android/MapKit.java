@@ -20,6 +20,8 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 public class MapKit extends CordovaPlugin {
 
@@ -128,6 +130,7 @@ public class MapKit extends CordovaPlugin {
 							for (int i = 0, j = pins.length(); i < j; i++) {
 								double latitude = 0, longitude = 0;
                                 String title = null, snippet = null;
+                                BitmapDescriptor bitmapDescriptor = null;
                                 JSONObject options = pins.getJSONObject(i);
                                 latitude = options.getDouble("lat");
                                 longitude = options.getDouble("lon");
@@ -137,11 +140,15 @@ public class MapKit extends CordovaPlugin {
                                 if( options.has("snippet") ) {
                                     snippet = options.getString("snippet");
                                 }
+                                if( options.has("icon") ) {
+                                    bitmapDescriptor = getBitmapDescriptor(options);
+                                }
                                 // adding Marker
                                 mapView.getMap().addMarker(
                                         new MarkerOptions()
                                                 .title(title)
                                                 .snippet(snippet) //If there is no title,  the snippet isn't displayed
+                                                .icon(bitmapDescriptor)
                                                 .position(new LatLng(latitude,
                                                         longitude)));
 							}
@@ -159,6 +166,29 @@ public class MapKit extends CordovaPlugin {
 			cCtx.error("MapKitPlugin::addMapPins(): An exception occured");
 		}
 	}
+
+	private BitmapDescriptor getBitmapDescriptor( final JSONObject iconOption ) {
+        try {
+            Object o = iconOption.get("icon");
+            String type = null, resource = null;
+            if( o.getClass().getName().equals("org.json.JSONObject" ) ) {
+                JSONObject icon = (JSONObject)o;
+                if(icon.has("type") && icon.has("resource")) {
+                    type = icon.getString("type");
+                    resource = icon.getString("resource");
+                    if(type.equals("asset")) {
+                        return BitmapDescriptorFactory.fromAsset(resource);
+                    }
+                }
+            } else {
+                //this is a simple change in the icon's color
+                return BitmapDescriptorFactory.defaultMarker(Float.parseFloat(o.toString()));
+            }
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 	public void clearMapPins() {
 		try {
