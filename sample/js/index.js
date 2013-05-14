@@ -62,13 +62,16 @@ var app = {
                 title: "A Cool Title, with no Snippet",
                 icon: {
                   type: "asset",
-                  resource: "www/map-close-button.png" //an image in the asset directory
+                  resource: "www/map-close-button.png", //an image in the asset directory
+                  pinColor: mapKit.iconColors.HUE_VIOLET //iOS only
                 }
             },
             {
                 lat: 49.28286,
                 lon: -123.11891,
-                snippet: "Awesome Snippet with no title"
+                title: "Awesome Title",
+                snippet: "Awesome Snippet",
+                icon: mapKit.iconColors.HUE_GREEN
             }
         ];
         //var pins = [[49.28115, -123.10450], [49.27503, -123.12138], [49.28286, -123.11891]];
