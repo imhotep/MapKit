@@ -6,8 +6,8 @@
 
     <name>MapKit</name>
 
-    <asset src="www/MapKit.js" target="MapKit.js" />
-    <asset src="www/map-close-button.png" target="map-close-button.png" />
+    <asset src="www/MapKit.js" target="js/MapKit.js" />
+    <asset src="www/map-close-button.png" target="img/map-close-button.png" />
 
     <!-- android -->
     <platform name="android">
@@ -52,20 +52,22 @@ In case everything miserably fails and you can't build your project, you might n
     </platform>
     <!-- ios -->
     <platform name="ios">
-        <config-file target="config.xml" parent="/widget/plugins">
-            <plugin name="MapKitView"
+        <config-file target="config.xml" parent="/widget">
+          <feature name="MapKit">
+            <param name="ios-package"
                 value="MapKitView"/>
+          </feature>
         </config-file>
 
         <framework src="MapKit.framework" />
-        <resource-file src="icon.png" />
+        <resource-file src="src/ios/icon.png" />
 
-        <header-file src="AsyncImageView.h" />
-        <header-file src="CDVAnnotation.h" />
-        <header-file src="MapKit.h" />
+        <header-file src="src/ios/AsyncImageView.h" />
+        <header-file src="src/ios/CDVAnnotation.h" />
+        <header-file src="src/ios/MapKit.h" />
 
-        <source-file src="AsyncImageView.m" />
-        <source-file src="CDVAnnotation.m" />
-        <source-file src="MapKit.m" />
+        <source-file src="src/ios/AsyncImageView.m" />
+        <source-file src="src/ios/CDVAnnotation.m" />
+        <source-file src="src/ios/MapKit.m" />
     </platform>
 </plugin>
