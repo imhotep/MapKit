@@ -42,7 +42,7 @@
     BOOL atBottom = ([options objectForKey:@"atBottom"]) ? [[options objectForKey:@"atBottom"] boolValue] : NO;
 
     if(atBottom) {
-        y += height;
+        y += self.webView.bounds.size.height - height;
     }
 
     self.childView = [[UIView alloc] initWithFrame:CGRectMake(x,y,width,height)];
