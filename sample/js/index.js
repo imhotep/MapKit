@@ -62,7 +62,7 @@ var app = {
                 title: "A Cool Title, with no Snippet",
                 icon: {
                   type: "asset",
-                  resource: "www/map-close-button.png", //an image in the asset directory
+                  resource: "www/img/logo.png", //an image in the asset directory
                   pinColor: mapKit.iconColors.HUE_VIOLET //iOS only
                 }
             },
