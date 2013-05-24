@@ -11,6 +11,8 @@ Currently only works/tested on Android and iOS.
 
 ![Cordova Map 3](http://i.imgur.com/3IoDj0Rl.png)
 
+![Cordova Map 4](http://i.imgur.com/Bfzik6Ml.png)
+
 
 Android specific
 ----------------
