@@ -3,7 +3,7 @@ MapKit plugin for iOS and Android
 
 Uses *Apple Maps* on iOS and *Google Maps v2* on Android
 
-Currently only works/tested on Android. iOS is currently outdated and DOES NOT WORK.
+Currently only works/tested on Android and iOS.
 
 ![Cordova Map 1](http://i.imgur.com/Mf6oeXal.png)
 
@@ -54,6 +54,15 @@ Sample code
               console.log('error');
             };
             mapKit.clearMapPins(success, error);
+        },
+        changeMapType: function() {
+            var success = function() {
+              console.log('Map Type Changed');
+            };
+            var error = function() {
+              console.log('error');
+            };
+            mapKit.changeMapType(mapKit.mapType.MAP_TYPE_SATELLITE, success, error);
         }
     }
 
@@ -70,7 +79,12 @@ Edit the options in MapKit.js to suit your needs
       lon: -123.104446  // initial camera position latitude
     };
 
+Sample App
+----------
+
+Checkout the sample/ application as a boilerplate!
+
 Missing features
 ----------------
 
-Info bubbles: really easy to add simple bubbles, more complicated to add customized info bubbles
+Info bubbles: Simple info bubbles supported (title, snippet and custom icons for markers). Custom info bubbles not supported (i.e HTML bubbles etc..).
