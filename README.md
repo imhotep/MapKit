@@ -9,6 +9,8 @@ Currently only works/tested on Android and iOS.
 
 ![Cordova Map 2](http://i.imgur.com/XaaBGeGl.png)
 
+![Cordova Map 3](http://i.imgur.com/3IoDj0Rl.png)
+
 
 Android specific
 ----------------
