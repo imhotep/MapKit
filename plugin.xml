@@ -28,9 +28,10 @@
                 android:value="$API_KEY" />
         </config-file>
 
-        <config-file target="res/xml/config.xml" parent="/cordova/plugins">
-            <plugin name="MapKit"
-                value="com.phonegap.plugins.mapkit.MapKit"/>
+        <config-file target="res/xml/config.xml" parent="/widget">
+           <feature name="MapKit">
+              <param name="android-package" value="com.phonegap.plugins.mapkit.MapKit"/>
+            </feature>
         </config-file>
 
         <source-file src="src/android/MapKit.java"
@@ -47,7 +48,7 @@ In order for this plugin to work you need to make sure to have
 
 * Run `android update project -p . -t YOUR_ANDROID_TARGET -l ../YOUR_ADT_BUNDLE_PATH/sdk/extras/google/google_play_services/libproject/google-play-services_lib/` in your project root folder. HAS TO BE A RELATIVE PATH
 
-In case everything miserably fails and you can't build your project, you might need to import it in ADT (Eclipse).
+In case everything miserably fails and you can't build your project, you might need to import it in ADT (Eclipse) or Android Studio (IntelliJ).
         </info>
     </platform>
     <!-- ios -->
