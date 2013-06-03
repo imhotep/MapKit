@@ -56,7 +56,7 @@ In case everything miserably fails and you can't build your project, you might n
         <config-file target="config.xml" parent="/widget">
           <feature name="MapKit">
             <param name="ios-package"
-                value="MapKitView"/>
+                value="MapKit"/>
           </feature>
         </config-file>
 
