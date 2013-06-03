@@ -7,7 +7,7 @@
 #import "CDVAnnotation.h"
 #import "AsyncImageView.h"
 
-@implementation MapKitView
+@implementation MapKit
 
 @synthesize buttonCallback;
 @synthesize childView;
@@ -17,7 +17,7 @@
 
 -(CDVPlugin*) initWithWebView:(UIWebView*)theWebView
 {
-    self = (MapKitView*)[super initWithWebView:theWebView];
+    self = (MapKit*)[super initWithWebView:theWebView];
     return self;
 }
 
