@@ -5,6 +5,7 @@
 
 	var MapKit = function() {
 		this.options = {
+			buttonCallback: 'window.mapKit.onMapCallback',
 			height: 460,
 			diameter: 1000,
 			atBottom: true,
@@ -36,6 +37,10 @@
 
 	MapKit.prototype = {
 
+		onMapCallback: function(pindex) {
+			// alert('Index of selected pin: ' + pindex);
+		},
+		
 		showMap: function(success, error) {
 			cordovaRef.exec(success, error, 'MapKit', 'showMap', [this.options]);
 		},
