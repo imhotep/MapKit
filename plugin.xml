@@ -5,6 +5,8 @@
     version="0.0.1">
 
     <name>MapKit</name>
+    <author>Anis Kadri</author>
+    <license>Apache</license>
 
     <asset src="www/MapKit.js" target="js/MapKit.js" />
     <asset src="www/map-close-button.png" target="img/map-close-button.png" />

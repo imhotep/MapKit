@@ -22,10 +22,10 @@
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate index:(NSInteger)index title:(NSString*)title subTitle:(NSString*)subTitle imageURL:(NSString*)imageURL {
     if ((self = [super init])) {
         _coordinate=coordinate;
-        _title = [title retain];
-		_subTitle = [subTitle retain];
+        _title = title;
+		_subTitle = subTitle;
 		_index=index;
-		_imageURL=[imageURL retain];
+		_imageURL=imageURL;
     }
     return self;
 }
@@ -40,11 +40,6 @@
 
 - (void)notifyCalloutInfo:(MKPlacemark *)newPlacemark {
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"MKAnnotationCalloutInfoDidChangeNotification" object:self]];
-}
-
-- (void)dealloc {
-    [_title release], _title = nil;
-    [super dealloc];
 }
 
 @end
