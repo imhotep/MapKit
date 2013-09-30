@@ -12,7 +12,11 @@ import org.json.JSONObject;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
+import android.app.Dialog;
+import android.content.DialogInterface;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMapOptions;
@@ -53,43 +57,61 @@ public class MapKit extends CordovaPlugin {
                     } catch (JSONException e) {
                         LOG.e(TAG, "Error reading options");
                     }
-                    mapView = new MapView(cordova.getActivity(),
-                            new GoogleMapOptions());
-                    root = (ViewGroup) webView.getParent();
-                    root.removeView(webView);
-                    main.addView(webView);
 
-                    cordova.getActivity().setContentView(main);
+                    final int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(cordova.getActivity());
+                    if (resultCode == ConnectionResult.SUCCESS) {
+                        mapView = new MapView(cordova.getActivity(),
+                                new GoogleMapOptions());
+                        root = (ViewGroup) webView.getParent();
+                        root.removeView(webView);
+                        main.addView(webView);
 
-                    try {
-                        MapsInitializer.initialize(cordova.getActivity());
-                    } catch (GooglePlayServicesNotAvailableException e) {
-                        e.printStackTrace();
+                        cordova.getActivity().setContentView(main);
+
+                        try {
+                            MapsInitializer.initialize(cordova.getActivity());
+                        } catch (GooglePlayServicesNotAvailableException e) {
+                            e.printStackTrace();
+                        }
+
+                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                                LayoutParams.MATCH_PARENT, height);
+                        if (atBottom) {
+                            params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,
+                                    RelativeLayout.TRUE);
+                        } else {
+                            params.addRule(RelativeLayout.ALIGN_PARENT_TOP,
+                                    RelativeLayout.TRUE);
+                        }
+                        params.addRule(RelativeLayout.CENTER_HORIZONTAL,
+                                RelativeLayout.TRUE);
+
+                        mapView.setLayoutParams(params);
+                        mapView.onCreate(null);
+                        mapView.onResume(); // FIXME: I wish there was a better way
+                                            // than this...
+                        main.addView(mapView);
+
+                        // Moving the map to lot, lon
+                        mapView.getMap().moveCamera(
+                                CameraUpdateFactory.newLatLngZoom(new LatLng(
+                                        latitude, longitude), 15));
+                        cCtx.success();
+
+                    } else if (resultCode == ConnectionResult.SERVICE_MISSING ||
+                               resultCode == ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED ||
+                               resultCode == ConnectionResult.SERVICE_DISABLED) {
+                        Dialog dialog = GooglePlayServicesUtil.getErrorDialog(resultCode, cordova.getActivity(), 1,
+                                    new DialogInterface.OnCancelListener() {
+                                        @Override
+                                        public void onCancel(DialogInterface dialog) {
+                                            cCtx.error("com.google.android.gms.common.ConnectionResult " + resultCode);
+                                        }
+                                    }
+                                );
+                        dialog.show();
                     }
 
-                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                            LayoutParams.MATCH_PARENT, height);
-                    if (atBottom) {
-                        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM,
-                                RelativeLayout.TRUE);
-                    } else {
-                        params.addRule(RelativeLayout.ALIGN_PARENT_TOP,
-                                RelativeLayout.TRUE);
-                    }
-                    params.addRule(RelativeLayout.CENTER_HORIZONTAL,
-                            RelativeLayout.TRUE);
-
-                    mapView.setLayoutParams(params);
-                    mapView.onCreate(null);
-                    mapView.onResume(); // FIXME: I wish there was a better way
-                                        // than this...
-                    main.addView(mapView);
-
-                    // Moving the map to lot, lon
-                    mapView.getMap().moveCamera(
-                            CameraUpdateFactory.newLatLngZoom(new LatLng(
-                                    latitude, longitude), 15));
-                    cCtx.success();
                 }
             });
         } catch (Exception e) {
