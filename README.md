@@ -3,7 +3,7 @@ MapKit plugin for iOS and Android
 
 Uses *Apple Maps* on iOS and *Google Maps v2* on Android
 
-Currently only works/tested on Android and iOS. Requires Cordova 3.0+ (will not work on earlier versions without modifications).
+Currently only works/tested on Android and iOS. Requires Cordova 3.0+ (will not work on earlier versions without modifications). **It does not work with cordova or phonegap CLIs either**
 
 ![Cordova Map 1](http://i.imgur.com/Mf6oeXal.png)
 
