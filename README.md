@@ -29,7 +29,31 @@ Sample code
 
     var app = {
         showMap: function() {
-            var pins = [[49.28115, -123.10450], [49.27503, -123.12138], [49.28286, -123.11891]];
+            var pins = [
+            {
+                lat: 49.28115,
+                lon: -123.10450,
+                title: "A Cool Title",
+                snippet: "A Really Cool Snippet",
+                icon: mapKit.iconColors.HUE_ROSE
+            },
+            {
+                lat: 49.27503,
+                lon: -123.12138,
+                title: "A Cool Title, with no Snippet",
+                icon: {
+                  type: "asset",
+                  resource: "www/img/logo.png", //an image in the asset directory
+                  pinColor: mapKit.iconColors.HUE_VIOLET //iOS only
+                }
+            },
+            {
+                lat: 49.28286,
+                lon: -123.11891,
+                title: "Awesome Title",
+                snippet: "Awesome Snippet",
+                icon: mapKit.iconColors.HUE_GREEN
+            }];
             var error = function() {
               console.log('error');
             };
