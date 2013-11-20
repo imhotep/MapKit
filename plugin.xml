@@ -12,7 +12,7 @@
 
     <!-- android -->
     <platform name="android">
-		<js-module src="www/MapKit.js" name="mapkit">
+        <js-module src="www/MapKit.js" name="mapkit">
             <clobbers target="plugin.mapKit" />
         </js-module>
 	
