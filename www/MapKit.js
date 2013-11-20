@@ -24,8 +24,8 @@ var MapKit = function() {
 };
 
 // Returns default params, overrides if provided with values
-function parseParameters(options) {
-    var opt = {
+function setDefaults(options) {
+    var defaults = {
         height: 460,
 		diameter: 1000,
 		atBottom: true,
@@ -34,18 +34,18 @@ function parseParameters(options) {
     };
 
     if (options) {
-        if (options.argument !== undefined) {
-            opt.argument = options.argument;
-        }
+        for(var i in defaults) 
+            if(typeof options[i] === "undefined") 
+                options[i] = defaults[i];
     }
 
-    return opt;
+    return options;
 }
 
 MapKit.prototype = {
 
 	showMap: function(success, error, options) {
-	    options = parseParameters(options);
+	    options = setDefaults(options);
 		exec(success, error, 'MapKit', 'showMap', [options]);
 	},
 
