@@ -62,7 +62,7 @@ In case everything miserably fails and you can't build your project, you might n
             <clobbers target="plugin.mapKit" />
         </js-module>
 
-        <config-file target="config.xml" parent="/widget">
+        <config-file target="config.xml" parent="/*">
             <feature name="MapKit">
                 <param name="ios-package" value="MapKitView"/>
             </feature>
