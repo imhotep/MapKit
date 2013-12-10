@@ -21,6 +21,10 @@ You need a [Google Maps Android v2 API KEY](https://code.google.com/apis/console
 
 You can install this plugin with [plugman](https://npmjs.org/package/plugman)
 
+    plugman install --platform android --project android-mapkit-example/ --plugin /path/to/MapKit --variable API_KEY="YOUR_API_KEY_FROM_GOOGLE"
+
+or with cordova CLI
+
     cordova -d plugin add /path/to/MapKit --variable API_KEY="YOUR_API_KEY_FROM_GOOGLE"
 	
 (/path/to/MapKit could be the git repository https://github.com/imhotep/MapKit)
