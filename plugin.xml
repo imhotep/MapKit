@@ -2,17 +2,20 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.phonegap.plugins.mapkit"
-    version="0.9.2">
+    version="0.9.3">
 
     <name>MapKit</name>
     <author>Anis Kadri</author>
     <license>Apache</license>
 
-    <asset src="www/MapKit.js" target="js/MapKit.js" />
     <asset src="www/map-close-button.png" target="img/map-close-button.png" />
 
     <!-- android -->
     <platform name="android">
+        <js-module src="www/MapKit.js" name="mapkit">
+            <clobbers target="plugin.mapKit" />
+        </js-module>
+	
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <permission
                 android:name="$PACKAGE_NAME.permission.MAPS_RECEIVE"
@@ -55,11 +58,14 @@ In case everything miserably fails and you can't build your project, you might n
     </platform>
     <!-- ios -->
     <platform name="ios">
-        <config-file target="config.xml" parent="/widget">
-          <feature name="MapKit">
-            <param name="ios-package"
-                value="MapKitView"/>
-          </feature>
+        <js-module src="www/MapKit.js" name="mapkit">
+            <clobbers target="plugin.mapKit" />
+        </js-module>
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="MapKit">
+                <param name="ios-package" value="MapKitView"/>
+            </feature>
         </config-file>
 
         <framework src="MapKit.framework" />
