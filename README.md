@@ -190,11 +190,14 @@ Configuration
 You can override the options by passing a suitable options object as arguments to showMap
 
     var options = {
-      height: 460, // height of the map (width is always full size for now)
-      diameter: 1000,   // unused for now
-      atBottom: true,   // bottom or top of the webview
-      lat: 49.281468,   // initial camera position latitude
-      lon: -123.104446  // initial camera position latitude
+        height: window.innerHeight,
+        diameter: 1000,
+        atBottom: true,
+        xPos: window.innerWidth,
+        yPos: 0.0,
+        userInteractionEnabled: true,
+        lat: 48.8530340,
+        lon: 2.3865510
     };
 
 Sample App
