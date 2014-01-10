@@ -6,14 +6,9 @@ Uses *Apple Maps* on iOS and *Google Maps v2* on Android
 Currently only works/tested on Android and iOS. Requires Cordova 3.0+ (will not work on earlier versions without modifications).
 NB : Advanced functionnalities (that differ from Imhotep's plugin) are only accessible for IOS at the moment. Android in progress.
 
-![Cordova Map 1](http://i.imgur.com/Mf6oeXal.png)
+![Cordova Map 1](http://www.benjamin-horner.com/img/2014-01-10 11.12.44.png)
 
-![Cordova Map 2](http://i.imgur.com/XaaBGeGl.png)
-
-![Cordova Map 3](http://i.imgur.com/3IoDj0Rl.png)
-
-![Cordova Map 4](http://i.imgur.com/Bfzik6Ml.png)
-
+![Cordova Map 2](http://www.benjamin-horner.com/img/2014-01-10 11.13.24.png)
 
 Android specific
 ----------------
