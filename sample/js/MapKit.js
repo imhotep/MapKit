@@ -1,18 +1,11 @@
 
 (function() {
 
-	var cordovaRef = window.PhoneGap || window.Cordova || window.cordova;
+    var cordovaRef = window.PhoneGap || window.Cordova || window.cordova;
 
-	var MapKit = function() {
-		this.options = {
-			height: 460,
-			diameter: 1000,
-			atBottom: true,
-			lat: 49.281468,
-			lon: -123.104446
-		};
+    var MapKit = function() {
 
-		this.mapType = {
+        this.mapType = {
             MAP_TYPE_NONE: 0, //No base map tiles.
             MAP_TYPE_NORMAL: 1, //Basic maps.
             MAP_TYPE_SATELLITE: 2, //Satellite maps with no labels.
@@ -32,34 +25,54 @@
             HUE_MAGENTA: 300.0,
             HUE_ROSE: 330.0
         };
-	};
+    };
 
-	MapKit.prototype = {
+    MapKit.prototype = {
 
-		showMap: function(success, error) {
-			cordovaRef.exec(success, error, 'MapKit', 'showMap', [this.options]);
-		},
+        showMap: function(success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'showMap', [this.options]);
+        },
 
-		addMapPins: function(pins, success, error) {
-			cordovaRef.exec(success, error, 'MapKit', 'addMapPins', [pins]);
-		},
+        moveMap: function(move, success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'moveMap', [move]);
+        },
 
-		clearMapPins: function(success, error) {
-			cordovaRef.exec(success, error, 'MapKit', 'clearMapPins', []);
-		},
+        addMapPins: function(pins, success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'addMapPins', [pins]);
+        },
 
-		hideMap: function(success, error) {
-			cordovaRef.exec(success, error, 'MapKit', 'hideMap', []);
-		},
+        clearMapPins: function(success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'clearMapPins', []);
+        },
 
-		changeMapType: function(mapType, success, error) {
-			cordovaRef.exec(success, error, 'MapKit', 'changeMapType', [mapType ? { "mapType": mapType } :{ "mapType": 0 }]);
-		}
+        hideMap: function(success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'hideMap', []);
+        },
 
-	};
+        addInnerShadows: function(shadows, success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'addInnerShadows', [shadows]);
+        },
 
-	cordovaRef.addConstructor(function() {
-		window.mapKit = new MapKit();
-	});
+        showDirections: function(directions, success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'showDirections', [directions]);
+        },
+
+        addCloseButton: function(btn, success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'addCloseButton', [btn]);
+        },
+
+        addCoverImage: function(image, success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'addCoverImage', [image]);
+        },
+
+        changeMapType: function(mapType, success, error) {
+            cordovaRef.exec(success, error, 'MapKit', 'changeMapType', [mapType ? { "mapType": mapType } :{ "mapType": 0 }]);
+        }
+
+    };
+
+    cordovaRef.addConstructor(function() {
+        window.mapKit = new MapKit();
+    });
 
 })();
