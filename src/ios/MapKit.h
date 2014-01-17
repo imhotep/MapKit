@@ -26,6 +26,8 @@
 
 - (void)hideMap:(CDVInvokedUrlCommand *)command;
 
+- (void)moveMap:(CDVInvokedUrlCommand *)command;
+
 - (void)changeMapType:(CDVInvokedUrlCommand *)command;
 
 - (void)destroyMap:(CDVInvokedUrlCommand *)command;
@@ -33,5 +35,13 @@
 - (void)clearMapPins:(CDVInvokedUrlCommand *)command;
 
 - (void)addMapPins:(CDVInvokedUrlCommand *)command;
+
+- (void)addInnerShadows:(CDVInvokedUrlCommand *)command;
+
+- (void)showDirections:(CDVInvokedUrlCommand *)command;
+
+- (void)addCloseButton:(CDVInvokedUrlCommand *)command;
+
+- (void)addCoverImage:(CDVInvokedUrlCommand *)command;
 
 @end

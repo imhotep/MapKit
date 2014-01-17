@@ -34,6 +34,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        app.showMap();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -50,15 +51,15 @@ var app = {
     showMap: function() {
         var pins = [
             {
-                lat: 49.28115,
-                lon: -123.10450,
-                title: "A Cool Title",
-                snippet: "A Really Cool Snippet",
+                lat: 48.8530340,
+                lon: 2.3865510,
+                title: "BOCETO",
+                snippet: "Bienvenue au bureau !",
                 icon: mapKit.iconColors.HUE_ROSE
             },
             {
-                lat: 49.27503,
-                lon: -123.12138,
+                lat: 48.8580340,
+                lon: 2.3965510,
                 title: "A Cool Title, with no Snippet",
                 icon: {
                   type: "asset",
@@ -67,27 +68,90 @@ var app = {
                 }
             },
             {
-                lat: 49.28286,
-                lon: -123.11891,
+                lat: 48.8630340,
+                lon: 2.3765510,
                 title: "Awesome Title",
                 snippet: "Awesome Snippet",
                 icon: mapKit.iconColors.HUE_GREEN
             }
         ];
-        //var pins = [[49.28115, -123.10450], [49.27503, -123.12138], [49.28286, -123.11891]];
         var error = function() {
           console.log('error');
         };
         var success = function() {
-          document.getElementById('hide_map').style.display = 'block';
-          document.getElementById('show_map').style.display = 'none';
-          mapKit.addMapPins(pins, function() { 
-                                      console.log('adMapPins success');  
-                                      document.getElementById('clear_map_pins').style.display = 'block';
+          mapKit.addMapPins(pins, function() {
+                                      console.log('adMapPins success');
                                   },
                                   function() { console.log('error'); });
         };
+        mapKit.options = {
+            height: window.innerHeight,
+            diameter: 1000,
+            atBottom: true,
+            xPos: window.innerWidth,
+            yPos: 0.0,//-window.innerHeight + 200,
+            userInteractionEnabled: true,
+            lat: 48.8530340,
+            lon: 2.3865510
+        };
+
+        var directions = [
+            {
+                srcIsCurrPosition: true,  // Is the source the User's current position ? Else, enter srcLatitude and srcLongitude. Default is false
+                srcLatitude: 48.8630340, // Set if srcIsCurrPosition = true
+                srcLongitude: 2.3765510, // Set if srcIsCurrPosition = true
+                destLatitude: 48.8630340,
+                destLongitude: 2.3865510,
+                transportTypeWalk: true // Default is car
+            }
+        ];
+
+
+
         mapKit.showMap(success, error);
+        mapKit.showDirections(directions, success, error);
+
+
+        setTimeout(function(){
+            var move = [
+                {
+                    xPosEnd: 0.0,
+                    yPosEnd: 0.0,
+                    heightEnd: window.innerHeight,
+                    widthEnd: window.innerWidth
+                }
+            ];
+            var btn = [
+                {
+                    PosX: 10,
+                    PosY: 10
+                }
+            ];
+            var shadows = [
+                {
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 0,
+                    shadowRadius: 4,
+                    shadowOpacity: 0.8,
+                    shadowStartX: 0,
+                    shadowStartY: -20,
+                    shadowHeight: 20,
+                    shadowWidth: window.innerWidth
+                }
+            ];
+            var image = [
+                {
+                    PosX: (window.innerWidth/2) - 38,
+                    PosY: 200-38
+                }
+            ];
+
+            mapKit.addInnerShadows(shadows, success, error);
+            mapKit.moveMap(move, success, error);
+            //mapKit.addCloseButton(btn, success, error);
+            //mapKit.addCoverImage(image, success, error);
+        }, 3000);
+
     },
     hideMap: function() {
         var success = function() {
@@ -119,3 +183,5 @@ var app = {
         mapKit.changeMapType(mapKit.mapType.MAP_TYPE_SATELLITE, success, error);
     }
 };
+
+
