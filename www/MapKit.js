@@ -34,8 +34,8 @@ function setDefaults(options) {
     };
 
     if (options) {
-        for(var i in defaults) 
-            if(typeof options[i] === "undefined") 
+        for(var i in defaults)
+            if(typeof options[i] === "undefined")
                 options[i] = defaults[i];
     }
 
@@ -67,4 +67,22 @@ MapKit.prototype = {
 
 };
 
-module.exports = new MapKit();
+
+if (cordovaRef && cordovaRef.addConstructor) {
+	cordovaRef.addConstructor(init);
+} else {
+	init();
+}
+
+function init () {
+	if(!window.plugins) {
+		window.plugins = {};
+	}
+	if(!window.plugins.mapKit) {
+		window.plugins.mapKit = new MapKit();
+	}
+}
+
+if (typeof module != 'undefined' && module.exports) {
+	module.exports = new MapKit();
+}
