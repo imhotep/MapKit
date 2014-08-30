@@ -129,3 +129,9 @@ License
 -------
 
 Apache
+
+
+Credits for iOS
+---------------
+- Brett Rudd @goya
+- Becky Gibson @becka11y
