@@ -43,7 +43,7 @@ Sample code
                 lon: -123.10450,
                 title: "A Cool Title",
                 snippet: "A Really Cool Snippet",
-                icon: plugin.mapKit.iconColors.HUE_ROSE
+                icon: mapKit.iconColors.HUE_ROSE
             },
             {
                 lat: 49.27503,
@@ -52,7 +52,7 @@ Sample code
                 icon: {
                   type: "asset",
                   resource: "www/img/logo.png", //an image in the asset directory
-                  pinColor: plugin.mapKit.iconColors.HUE_VIOLET //iOS only
+                  pinColor: mapKit.iconColors.HUE_VIOLET //iOS only
                 }
             },
             {
@@ -60,18 +60,18 @@ Sample code
                 lon: -123.11891,
                 title: "Awesome Title",
                 snippet: "Awesome Snippet",
-                icon: plugin.mapKit.iconColors.HUE_GREEN
+                icon: mapKit.iconColors.HUE_GREEN
             }];
             var error = function() {
               console.log('error');
             };
             var success = function() {
-              plugin.mapKit.addMapPins(pins, function() { 
+              mapKit.addMapPins(pins, function() { 
                                           console.log('adMapPins success');  
                                       },
                                       function() { console.log('error'); });
             };
-            plugin.mapKit.showMap(success, error);
+            mapKit.showMap(success, error);
         },
         hideMap: function() {
             var success = function() {
@@ -80,7 +80,7 @@ Sample code
             var error = function() {
               console.log('error');
             };
-            plugin.mapKit.hideMap(success, error);
+            mapKit.hideMap(success, error);
         },
         clearMapPins: function() {
             var success = function() {
@@ -89,7 +89,7 @@ Sample code
             var error = function() {
               console.log('error');
             };
-            plugin.mapKit.clearMapPins(success, error);
+            mapKit.clearMapPins(success, error);
         },
         changeMapType: function() {
             var success = function() {
@@ -98,7 +98,7 @@ Sample code
             var error = function() {
               console.log('error');
             };
-            plugin.mapKit.changeMapType(mapKit.mapType.MAP_TYPE_SATELLITE, success, error);
+            mapKit.changeMapType(mapKit.mapType.MAP_TYPE_SATELLITE, success, error);
         }
     }
 
