@@ -23,6 +23,7 @@ You can install this plugin with [plugman](https://npmjs.org/package/plugman)
 
     plugman install --platform android --project android-mapkit-example/ --plugin /path/to/MapKit --variable API_KEY="YOUR_API_KEY_FROM_GOOGLE"
 
+Follow the instructions that are displayed after you install the plugin.
 
 Sample code
 -----------
