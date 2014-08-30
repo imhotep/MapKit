@@ -3,7 +3,7 @@ MapKit plugin for iOS and Android
 
 Uses *Apple Maps* on iOS and *Google Maps v2* on Android
 
-Currently only works/tested on Android and iOS. Requires Cordova 3.0+ (will not work on earlier versions without modifications). **It does not work with cordova or phonegap CLIs either**
+Currently only works/tested on Android and iOS. Requires Cordova 3.0+ (will not work on earlier versions without modifications).
 
 ![Cordova Map 1](http://i.imgur.com/Mf6oeXal.png)
 
@@ -23,24 +23,55 @@ You can install this plugin with [plugman](https://npmjs.org/package/plugman)
 
     plugman install --platform android --project android-mapkit-example/ --plugin /path/to/MapKit --variable API_KEY="YOUR_API_KEY_FROM_GOOGLE"
 
+or with cordova CLI
+
+    cordova -d plugin add /path/to/MapKit --variable API_KEY="YOUR_API_KEY_FROM_GOOGLE"
+	
+(/path/to/MapKit could be the git repository https://github.com/imhotep/MapKit)
+
 Follow the instructions that are displayed after you install the plugin.
+
 
 Sample code
 -----------
 
     var app = {
         showMap: function() {
-            var pins = [[49.28115, -123.10450], [49.27503, -123.12138], [49.28286, -123.11891]];
+            var pins = [
+            {
+                lat: 49.28115,
+                lon: -123.10450,
+                title: "A Cool Title",
+                snippet: "A Really Cool Snippet",
+                icon: plugin.mapKit.iconColors.HUE_ROSE
+            },
+            {
+                lat: 49.27503,
+                lon: -123.12138,
+                title: "A Cool Title, with no Snippet",
+                icon: {
+                  type: "asset",
+                  resource: "www/img/logo.png", //an image in the asset directory
+                  pinColor: plugin.mapKit.iconColors.HUE_VIOLET //iOS only
+                }
+            },
+            {
+                lat: 49.28286,
+                lon: -123.11891,
+                title: "Awesome Title",
+                snippet: "Awesome Snippet",
+                icon: plugin.mapKit.iconColors.HUE_GREEN
+            }];
             var error = function() {
               console.log('error');
             };
             var success = function() {
-              mapKit.addMapPins(pins, function() { 
+              plugin.mapKit.addMapPins(pins, function() { 
                                           console.log('adMapPins success');  
                                       },
                                       function() { console.log('error'); });
             };
-            mapKit.showMap(success, error);
+            plugin.mapKit.showMap(success, error);
         },
         hideMap: function() {
             var success = function() {
@@ -49,7 +80,7 @@ Sample code
             var error = function() {
               console.log('error');
             };
-            mapKit.hideMap(success, error);
+            plugin.mapKit.hideMap(success, error);
         },
         clearMapPins: function() {
             var success = function() {
@@ -58,7 +89,7 @@ Sample code
             var error = function() {
               console.log('error');
             };
-            mapKit.clearMapPins(success, error);
+            plugin.mapKit.clearMapPins(success, error);
         },
         changeMapType: function() {
             var success = function() {
@@ -67,16 +98,16 @@ Sample code
             var error = function() {
               console.log('error');
             };
-            mapKit.changeMapType(mapKit.mapType.MAP_TYPE_SATELLITE, success, error);
+            plugin.mapKit.changeMapType(mapKit.mapType.MAP_TYPE_SATELLITE, success, error);
         }
     }
 
 Configuration
 -------------
 
-Edit the options in MapKit.js to suit your needs
+You can override the options by passing a suitable options object as arguments to showMap
 
-    this.options = {
+    var options = {
       height: 460, // height of the map (width is always full size for now)
       diameter: 1000,   // unused for now
       atBottom: true,   // bottom or top of the webview
