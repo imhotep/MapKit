@@ -17,7 +17,6 @@ import android.content.DialogInterface;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapView;
@@ -68,11 +67,7 @@ public class MapKit extends CordovaPlugin {
 
                         cordova.getActivity().setContentView(main);
 
-                        try {
-                            MapsInitializer.initialize(cordova.getActivity());
-                        } catch (GooglePlayServicesNotAvailableException e) {
-                            e.printStackTrace();
-                        }
+                        MapsInitializer.initialize(cordova.getActivity());
 
                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                                 LayoutParams.MATCH_PARENT, height);
