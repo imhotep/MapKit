@@ -279,7 +279,9 @@ public class MapKit extends CordovaPlugin {
 //						AlphaAnimation animation2 = new AlphaAnimation(1.0f, 0.0f);
 //						animation2.setDuration(1000);
 //						mapView.startAnimation(animation2);
-						lastClicked.hideInfoWindow();
+						if (lastClicked != null) {
+							lastClicked.hideInfoWindow();
+						}
 						mapView.setVisibility(mapView.GONE);
 						cCtx.success();
 					} else {
