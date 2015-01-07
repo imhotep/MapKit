@@ -1,3 +1,6 @@
+Not so maintained. Checkout https://github.com/wf9a5m75/phonegap-googlemaps-plugin
+==================================================================================
+
 MapKit plugin for iOS and Android
 =================================
 
