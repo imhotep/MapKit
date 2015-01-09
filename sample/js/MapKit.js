@@ -36,11 +36,16 @@
 
 	MapKit.prototype = {
 
-		showMap: function(success, error) {
-			cordovaRef.exec(success, error, 'MapKit', 'showMap', [this.options]);
+		showMap: function(success, error, options) {
+			if (options) {
+				cordovaRef.exec(success, error, 'MapKit', 'showMap', [options]);
+			} else {
+				cordovaRef.exec(success, error, 'MapKit', 'showMap', [this.options]);
+			}
+			
 		},
 
-		addMapPins: function(pins, success, error) {
+		addMapPins: function(success, error, pins) {
 			cordovaRef.exec(success, error, 'MapKit', 'addMapPins', [pins]);
 		},
 
@@ -54,6 +59,14 @@
 
 		changeMapType: function(mapType, success, error) {
 			cordovaRef.exec(success, error, 'MapKit', 'changeMapType', [mapType ? { "mapType": mapType } :{ "mapType": 0 }]);
+		},
+		
+		setMapData: function(success, error, options) {
+			if (options) {
+				cordovaRef.exec(success, error, 'MapKit', 'setMapData', [options]);
+			} else {
+				cordovaRef.exec(success, error, 'MapKit', 'setMapData', [this.options]);
+			}
 		}
 
 	};

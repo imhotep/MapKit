@@ -34,4 +34,10 @@
 
 - (void)addMapPins:(CDVInvokedUrlCommand *)command;
 
+/* custom addition */
+- (void)setViewWithOptions:(NSDictionary *)options;
+
+- (void)setMapData:(CDVInvokedUrlCommand *)command;
+/* end custom addition */
+
 @end
