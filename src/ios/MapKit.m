@@ -7,6 +7,9 @@
 #import "CDVAnnotation.h"
 #import "AsyncImageView.h"
 
+// import CDVJSON 
+#import <Cordova/CDVJSON.h>
+
 @implementation MapKitView
 
 @synthesize buttonCallback;
