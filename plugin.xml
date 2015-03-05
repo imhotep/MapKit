@@ -6,6 +6,9 @@
 
     <name>MapKit</name>
     <author>Anis Kadri</author>
+    <description>
+        Uses Apple Maps on iOS and Google Maps v2 on Android
+    </description>
     <license>Apache</license>
 
     <asset src="www/map-close-button.png" target="img/map-close-button.png" />
