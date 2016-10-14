@@ -74,7 +74,6 @@ var app = {
                 icon: mapKit.iconColors.HUE_GREEN
             }
         ];
-        //var pins = [[49.28115, -123.10450], [49.27503, -123.12138], [49.28286, -123.11891]];
         var error = function() {
           console.log('error');
         };
